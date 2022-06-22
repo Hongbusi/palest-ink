@@ -37,7 +37,7 @@ async function createWindow() {
     win.loadFile(join(__dirname, '../../index.html'))
   else
     win.loadURL(url)
-    // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Test active push message to Renderer-process
   win.webContents.on('did-finish-load', () => {
@@ -50,9 +50,6 @@ async function createWindow() {
       shell.openExternal(url)
     return { action: 'deny' }
   })
-
-  // Open DevTools
-  // win.webContents.toggleDevTools()
 }
 
 app.whenReady().then(createWindow)
