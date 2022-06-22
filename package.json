@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@7.1.6",
+  "description": "好记性不如烂笔头。",
   "license": "MIT",
-  "author": "Hongbusi>",
+  "author": "Hongbusi",
   "main": "dist/electron/main/index.js",
   "scripts": {
     "dev": "vite",

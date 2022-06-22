@@ -24,7 +24,7 @@ const url = `http://${process.env.VITE_DEV_SERVER_HOST}:${process.env.VITE_DEV_S
 
 async function createWindow() {
   win = new BrowserWindow({
-    title: 'Main window',
+    title: 'PalestInk',
     webPreferences: {
       preload: splash,
       nodeIntegration: true,
@@ -49,6 +49,7 @@ async function createWindow() {
       shell.openExternal(url)
     return { action: 'deny' }
   })
+  // win.webContents.toggleDevTools()
 }
 
 app.whenReady().then(createWindow)
@@ -91,6 +92,6 @@ ipcMain.handle('open-win', (event, arg) => {
   }
   else {
     childWindow.loadURL(`${url}/#${arg}`)
-    // childWindow.webContents.openDevTools({ mode: "undocked", activate: true })
+    childWindow.webContents.openDevTools({ mode: 'undocked', activate: true })
   }
 })
