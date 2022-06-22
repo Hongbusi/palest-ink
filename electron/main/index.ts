@@ -50,6 +50,8 @@ async function createWindow() {
       shell.openExternal(url)
     return { action: 'deny' }
   })
+
+  // Open DevTools
   // win.webContents.toggleDevTools()
 }
 
