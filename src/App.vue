@@ -1,17 +1,37 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { SettingOutlined } from '@ant-design/icons-vue'
+
+const visible = ref<boolean>(false)
+const handleClickSetting = () => {
+  visible.value = true
+}
+
+const handleClickToggleTheme = async () => {
+  await window.toggleDarkMode()
+}
 </script>
 
 <template>
-  <div>
-    <hello-world />
-    <p>Current theme source: <strong id="theme-source">System</strong></p>
+  <div class="w-full h-screen">
+    <div class="flex flex-col-reverse py-4 w-48px h-full bg-#0D1117">
+      <a-tooltip placement="right">
+        <template #title>
+          <span>设置</span>
+        </template>
+        <div class="flex justify-center items-center w-full h-48px cursor-pointer" @click="handleClickSetting">
+          <setting-outlined class="text-2xl text-gray" />
+        </div>
+      </a-tooltip>
+    </div>
 
-    <button id="toggle-dark-mode">
-      Toggle Dark Mode
-    </button>
-    <button id="reset-to-system">
-      Reset to System Theme
-    </button>
+    <a-modal
+      v-model:visible="visible"
+      :closable="false"
+      :footer="null"
+    >
+      <a-button @click="handleClickToggleTheme">
+        切换主题
+      </a-button>
+    </a-modal>
   </div>
 </template>

@@ -3,6 +3,9 @@ import { join } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron/renderer'
 
@@ -13,6 +16,16 @@ export default defineConfig({
   plugins: [
     vue(),
     Unocss(),
+    AutoImport({
+      imports: [
+        'vue'
+      ]
+    }),
+    Components({
+      resolvers: [
+        AntDesignVueResolver()
+      ]
+    }),
     electron({
       main: {
         entry: 'electron/main/index.ts',
