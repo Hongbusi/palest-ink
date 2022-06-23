@@ -1,3 +1,5 @@
+import { ipcRenderer } from 'electron'
+
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise((resolve) => {
     if (condition.includes(document.readyState)) {
@@ -83,3 +85,6 @@ function useLoading() {
 const { appendLoading, removeLoading } = useLoading()
 window.removeLoading = removeLoading
 domReady().then(appendLoading)
+
+window.toggleDarkMode = () => ipcRenderer.invoke('dark-mode:toggle')
+window.systemDarkMode = () => ipcRenderer.invoke('dark-mode:system')

@@ -1,6 +1,6 @@
 import { release } from 'os'
 import { join } from 'path'
-import { BrowserWindow, app, ipcMain, shell } from 'electron'
+import { BrowserWindow, app, ipcMain, nativeTheme, shell } from 'electron'
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1'))
@@ -37,7 +37,24 @@ async function createWindow() {
     win.loadFile(join(__dirname, '../../index.html'))
   else
     win.loadURL(url)
+
+  // Open DevTools
   win.webContents.openDevTools()
+
+  // Theme
+  ipcMain.handle('dark-mode:toggle', () => {
+    if (nativeTheme.shouldUseDarkColors)
+      nativeTheme.themeSource = 'light'
+
+    else
+      nativeTheme.themeSource = 'dark'
+
+    return nativeTheme.shouldUseDarkColors
+  })
+
+  ipcMain.handle('dark-mode:system', () => {
+    nativeTheme.themeSource = 'system'
+  })
 
   // Test active push message to Renderer-process
   win.webContents.on('did-finish-load', () => {
