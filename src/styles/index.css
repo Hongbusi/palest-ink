@@ -1,0 +1,9 @@
+html {
+  background: #ddd;
+  color: black;
+}
+
+html.dark {
+  background: #333;
+  color: white;
+}
