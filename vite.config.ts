@@ -2,6 +2,7 @@ import { rmSync } from 'fs'
 import { join } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import Unocss from 'unocss/vite'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron/renderer'
 
@@ -11,6 +12,7 @@ rmSync('dist', { recursive: true, force: true }) // v14.14.0
 export default defineConfig({
   plugins: [
     vue(),
+    Unocss(),
     electron({
       main: {
         entry: 'electron/main/index.ts',
