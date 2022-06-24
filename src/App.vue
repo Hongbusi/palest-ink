@@ -6,8 +6,21 @@ const handleClickSetting = () => {
   visible.value = true
 }
 
-const handleClickToggleTheme = async () => {
-  await window.toggleDarkMode()
+// Theme
+type ThemeMode = 'dark' | 'light'
+const themeMode = ref<ThemeMode>()
+
+const initThemeMode = async () => {
+  const isDarkMode: any = await window.getDarkMode()
+  themeMode.value = isDarkMode ? 'dark' : 'light'
+}
+initThemeMode()
+
+const handleClickToggleTheme = async (mode: ThemeMode) => {
+  if (mode === 'dark')
+    await window.toggleDarkMode()
+  else
+    await window.toggleLightMode()
 }
 </script>
 
@@ -29,9 +42,18 @@ const handleClickToggleTheme = async () => {
       :closable="false"
       :footer="null"
     >
-      <a-button @click="handleClickToggleTheme">
-        切换主题
-      </a-button>
+      <a-select
+        v-model:value="themeMode"
+        style="width: 120px"
+        @change="handleClickToggleTheme"
+      >
+        <a-select-option value="dark">
+          暗黑
+        </a-select-option>
+        <a-select-option value="light">
+          高亮
+        </a-select-option>
+      </a-select>
     </a-modal>
   </div>
 </template>

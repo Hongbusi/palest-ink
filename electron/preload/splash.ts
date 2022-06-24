@@ -86,5 +86,6 @@ const { appendLoading, removeLoading } = useLoading()
 window.removeLoading = removeLoading
 domReady().then(appendLoading)
 
-window.toggleDarkMode = () => ipcRenderer.invoke('dark-mode:toggle')
-window.systemDarkMode = () => ipcRenderer.invoke('dark-mode:system')
+window.getDarkMode = () => ipcRenderer.invoke('dark-mode:get')
+window.toggleDarkMode = () => ipcRenderer.invoke('dark-mode:dark')
+window.toggleLightMode = () => ipcRenderer.invoke('dark-mode:light')

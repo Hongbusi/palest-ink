@@ -38,22 +38,20 @@ async function createWindow() {
   else
     win.loadURL(url)
 
-  // Open DevTools
+  // Open devtools
   win.webContents.openDevTools()
 
-  // Theme
-  ipcMain.handle('dark-mode:toggle', () => {
-    if (nativeTheme.shouldUseDarkColors)
-      nativeTheme.themeSource = 'light'
-
-    else
-      nativeTheme.themeSource = 'dark'
-
+  // Toggle theme
+  ipcMain.handle('dark-mode:get', () => {
     return nativeTheme.shouldUseDarkColors
   })
 
-  ipcMain.handle('dark-mode:system', () => {
-    nativeTheme.themeSource = 'system'
+  ipcMain.handle('dark-mode:light', () => {
+    nativeTheme.themeSource = 'light'
+  })
+
+  ipcMain.handle('dark-mode:dark', () => {
+    nativeTheme.themeSource = 'dark'
   })
 
   // Test active push message to Renderer-process

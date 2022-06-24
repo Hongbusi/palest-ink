@@ -1,8 +1,9 @@
 declare global {
   interface Window {
     removeLoading: () => void
+    getDarkMode: () => void
     toggleDarkMode: () => void
-    systemDarkMode: () => void
+    toggleLightMode: () => void
   }
 }
 
