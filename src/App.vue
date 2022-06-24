@@ -4,8 +4,6 @@ import Sidebar from '~/components/Sidebar.vue'
 
 <template>
   <div class="w-full h-screen">
-    <div class="flex flex-col-reverse py-4 w-48px h-full bg-#0D1117">
-      <sidebar />
-    </div>
+    <sidebar />
   </div>
 </template>
